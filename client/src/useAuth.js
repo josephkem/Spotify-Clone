@@ -13,6 +13,9 @@ export default function useAuth(code) {
       })
       .then((res) => {
         console.log(res.data);
+      })
+      .catch(() => {
+        window.location = "/";
       });
   }, [code]);
 }
