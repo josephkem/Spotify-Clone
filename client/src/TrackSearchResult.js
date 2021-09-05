@@ -1,8 +1,16 @@
 import React from "react";
 
-export default function TrackSearchResult({ track }) {
+export default function TrackSearchResult({ track, chooseTrack }) {
+  const handlePlay = () => {
+    chooseTrack(track);
+  };
+
   return (
-    <div className="d-flex m-2 align-items-center">
+    <div
+      className="d-flex m-2 align-items-center"
+      style={{ cursor: "pointer" }}
+      onClick={handlePlay}
+    >
       <img
         src={track.albumUrl}
         alt=""
