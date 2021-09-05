@@ -20,7 +20,9 @@ export default function Dashboard({ code }) {
   useEffect(() => {
     if (!search) return setSearchResults([]);
     if (!accessToken) return;
+    let cancel = false;
     spotifyApi.searchTracks(search).then((res) => {
+      if (cancel == true) return;
       setSearchResults(
         res.body.tracks.items.map((track) => {
           const smallestAlbumImage = track.album.images.reduce(
@@ -34,11 +36,13 @@ export default function Dashboard({ code }) {
             artist: track.artists[0].name,
             title: track.name,
             uri: track.uri,
-            albumUrl: smallestAlbumimage.url,
+            albumUrl: smallestAlbumImage.url,
           };
         })
       );
     });
+
+    return () => (cancel = true);
   }, [search, accessToken]);
 
   return (
@@ -49,9 +53,7 @@ export default function Dashboard({ code }) {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
-        Songs
-      </div>
+      <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}></div>
     </Container>
   );
 }
