@@ -13,6 +13,7 @@ export default function useAuth(code) {
       })
       .then((res) => {
         console.log(res.data);
+        window.history.pushState({}, null, "/");
       })
       .catch(() => {
         window.location = "/";
