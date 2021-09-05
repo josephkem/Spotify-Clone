@@ -35,7 +35,6 @@ export default function useAuth(code) {
           window.history.pushState({}, null, "/");
         })
         .catch((error) => {
-          console.log(error);
           window.location = "/";
         });
     }, (expiresIn - 60) * 1000);
