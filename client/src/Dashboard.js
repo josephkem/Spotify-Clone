@@ -47,7 +47,7 @@ export default function Dashboard({ code }) {
     if (!accessToken) return;
     let cancel = false;
     spotifyApi.searchTracks(search).then((res) => {
-      if (cancel == true) return;
+      if (cancel === true) return;
       setSearchResults(
         res.body.tracks.items.map((track) => {
           const smallestAlbumImage = track.album.images.reduce(
